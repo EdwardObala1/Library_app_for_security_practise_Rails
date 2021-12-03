@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index', as: 'users'
   post '/users', to: 'users#create'
+  get '/users/signin', to: 'users#signin', as: 'signin'
+  post '/users/login', to: 'users#login', as: 'login'
   get '/users/new', to: 'users#new', as: 'new_user'
   get '/users/:id', to: 'users#edit', as: 'user'
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
@@ -22,6 +24,6 @@ Rails.application.routes.draw do
   put '/users/:id', to: 'users#update'
   delete '/users/:id', to: 'users#destroy'
 
-  get '/waitinglist/:id', to: 'waitinglists#index', as: 'waitinglist'
+  get '/waitinglist/:id', to: 'waitinglists#index', as: 'waitinglists'
   post '/waitinglist/:id', to: 'waitinglists#new'
 end

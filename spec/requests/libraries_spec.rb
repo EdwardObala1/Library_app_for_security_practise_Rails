@@ -37,12 +37,12 @@ RSpec.describe "Libraries", type: :request do
       expect(response.status).to eq(302)
     end
     it 'shows the waiting list for a book' do
-      get waitinglist_path(library.id)
+      get waitinglists_path(library.id)
       expect(response.status).to eq(200)
     end
 
     it 'adds user to waiting list for book' do
-      post waitinglist_path(library.id), :params => { user_id: user.id }
+      post waitinglists_path(library.id), :params => { user_id: user.id }
       expect(response.status).to eq(200)
     end
     

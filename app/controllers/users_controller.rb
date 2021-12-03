@@ -19,6 +19,23 @@ class UsersController < ApplicationController
   def edit
   end
 
+  # /Get sigin
+  def signin
+
+  end
+
+  def login
+    user = User.exists?(email: user_params[:email])
+    respond_to do |format|
+      if user
+        format.html { redirect_to root_path, notice: "You have successfully Logged in.", :status => 'Succcessful' }
+      else
+        format.html { redirect_to @user, notice: "User does not exist reegister please.",  :status => 'Unsucccessful' }
+      end
+    end
+  end
+
+
   # POST /users or /users.json
   def create
     @user = User.new(user_params)

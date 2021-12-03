@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Library, type: :model do
+  let(:user){create(:user)}
   it 'checks if created book with values are valid' do
-    library = Library.create(book_title: 'Free World', author:'Ken Jeong', publish_year:2000)
+    library = Library.create(book_title: 'Free World', author:'Ken Jeong', publish_year:2000, user_id: user.id)
     expect(library).to be_valid
   end
 

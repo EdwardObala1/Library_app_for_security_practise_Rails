@@ -32,6 +32,13 @@ RSpec.describe "/users", type: :request do
     end
   end
 
+  describe "POST /Login" do
+    it 'allows the user to redirect after successful login' do
+      post login_path, :params => {user: {email: user.email, password: user.password}}
+      expect(flash[:notice]).to eq('You have successfully Logged in.')
+    end
+  end
+
   describe "GET /new" do
     it "renders a successful response" do
       get new_user_url

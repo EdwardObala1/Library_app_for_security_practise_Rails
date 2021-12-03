@@ -3,8 +3,6 @@ class WaitinglistsController < ApplicationController
 
   # GET /waitinglists or /waitinglists.json
   def index
-    require 'pry'
-    binding.pry
     @waitinglists = Waitinglist.where(id: params[:id])
   end
 

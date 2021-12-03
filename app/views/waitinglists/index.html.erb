@@ -12,8 +12,11 @@
   </thead>
 
   <tbody>
-  <td><% book = Library.where(id: params[:library_id]).first %>
-  <h2><%= book.book_title %></h2>
+  <% library = Library.exists?(id: params[:library_id]) %>
+  <%if library %>
+    <td><% book = Library.where(id: params[:library_id]).first %>
+    <h2><%= book.book_title %></h2>
+  <% end %>
     <% @waitinglists.each do |waitinglist| %>
       <tr>
         <td><%= waitinglist.user_id %></td>
