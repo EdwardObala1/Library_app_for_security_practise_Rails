@@ -6,10 +6,15 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th></th>
       <th>Email</th>
-      <th>Password</th>
+      <th></th>
       <th>Access</th>
+      <th></th>
       <th>Role</th>
+      <th></th>
+      <th>Admin Access</th>
+      <th>Library Access</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,9 +23,16 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
+        <td></td>
         <td><%= user.email %></td>
-        <td><%= user.password %></td>
+        <td></td>
         <td><%= user.access %></td>
+        <td></td>
+        <td><%= user.role %></td>
+        <td></td>
+        <td><%= user.admin %></td>
+        <td><%= user.librarian %></td>
+        <td></td>
         <td><%= user.role %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
@@ -32,4 +44,3 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>

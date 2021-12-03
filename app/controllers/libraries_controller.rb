@@ -1,9 +1,17 @@
 class LibrariesController < ApplicationController
   before_action :set_library, only: %i[ show edit update destroy ]
 
+
+  
+
   # GET /libraries or /libraries.json
   def index
     @libraries = Library.all
+    if user_signed_in?
+      @user = User.find_by(id: current_user.id)
+    else
+      @user = false
+    end
   end
 
   # GET /libraries/1 or /libraries/1.json
@@ -15,9 +23,10 @@ class LibrariesController < ApplicationController
     @library = Library.new
   end
 
-  # GET /libraries/1/edit
+  #Get /libraries/1
   def edit
   end
+
 
   # POST /libraries or /libraries.json
   def create
@@ -50,6 +59,8 @@ class LibrariesController < ApplicationController
 
   # DELETE /libraries/1 or /libraries/1.json
   def destroy
+    require 'pry'
+    binding.pry
     @library.destroy
     respond_to do |format|
       format.html { redirect_to libraries_url, notice: "Library was successfully destroyed." }
