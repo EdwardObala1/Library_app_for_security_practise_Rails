@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
- 
+  
 
   # libraries
   root 'libraries#index'
+  
   get '/Libraries', to: 'libraries#index', as: 'libraries'
   post '/Libraries', to: 'libraries#create', as: 'add_book'
   delete '/Libraries/:id', to: 'libraries#destroy', as: 'library_delete'
