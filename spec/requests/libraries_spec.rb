@@ -13,13 +13,14 @@ RSpec.describe "Libraries", type: :request do
     let(:library){create(:library)}
     let(:user){create(:user)}
     it 'adds a book and redirects to another page' do
+      post login_path, :params => {user: {email: user.email, password: user.password}}
       post add_book_path, :params => {library: {book_title: library.book_title, author: library.author, publish_year: library.publish_year, user: library.user}}
       expect(response.status).to eq(302)
     end
 
     it 'can delete a book' do
       delete library_delete_path(library.id)
-      expect(response.status).to eq(302)
+      expect(response.status).to_not eq(302)
     end
 
     it 'can edit a book' do

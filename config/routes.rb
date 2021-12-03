@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   post '/Libraries', to: 'libraries#create', as: 'add_book'
   delete '/Libraries/:id', to: 'libraries#destroy', as: 'library_delete'
   get '/Libraries/new', to: 'libraries#new', as: 'new_library'
-  patch '/libraries/:id', to: 'libraries#update', as: 'update'
+  patch '/libraries/:id', to: 'libraries#update'
   post '/libraries/:id/borrow', to: 'libraries#borrow', as: 'borrow_book'
+  get '/libraries/:id', to: 'libraries#show', as: "show_book"
+  get '/libraries/:id/edit', to: 'libraries#edit', as: 'edit_library'
 
   # users
 

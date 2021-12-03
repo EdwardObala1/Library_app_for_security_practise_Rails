@@ -5,5 +5,7 @@ FactoryBot.define do
     password { "password1234" }
     access { "basic" }
     role { "student" }
+    admin {false}
+    librarian {false}
   end
 end

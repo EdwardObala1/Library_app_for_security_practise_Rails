@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # /Get sigin
+  # /Get signin
   def signin
 
   end
