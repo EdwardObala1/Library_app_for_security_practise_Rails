@@ -59,11 +59,11 @@ RSpec.describe "/users", type: :request do
         expect {
           post users_url,params: { user: { name: user.name, email: user.email, password: user.password,
           access: user.access, role: user.role}}
-        }.to change(User, :count).by(2)
+        }.to change(User, :count).by(1)
       end
 
       it "redirects to the created user" do
-        post users_url, params: { user: { name: user.name, email: user.email, password: user.password,
+        post user_registration_url, params: { user: { name: user.name, email: user.email, password: user.password,
         access: user.access, role: user.role}}
         expect(response.status).to redirect_to(user_url(User.last))
       end
@@ -72,7 +72,7 @@ RSpec.describe "/users", type: :request do
     context "with invalid parameters" do
       it "does not create a new User" do
         expect {
-          post users_url, params: { user: { name: '', email: '', password: '',
+          post user_registration_url, params: { user: { name: '', email: '', password: '',
             access: user.access, role: user.role}}
         }.to change(User, :count).by(0)
       end
