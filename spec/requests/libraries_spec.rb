@@ -30,11 +30,21 @@ RSpec.describe "Libraries", type: :request do
 
   describe 'User based functionality' do
     let(:library){create(:library)}
+    let(:waitinglist){create(:waitinglist)}
+    let(:user){create(:user)}
     it 'checks if users can borrow books' do
       post borrow_book_url(library.id)
       expect(response.status).to eq(302)
     end
-    it 'shows the waiting list for a book' 
+    it 'shows the waiting list for a book' do
+      get waitinglist_path(library.id)
+      expect(response.status).to eq(200)
+    end
+
+    it 'adds user to waiting list for book' do
+      post waitinglist_path(library.id), :params => { user_id: user.id }
+      expect(response.status).to eq(200)
+    end
     
     it 'Librarians and admins can assign books as lent out'
 

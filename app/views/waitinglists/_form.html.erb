@@ -1,0 +1,27 @@
+<%= form_with(model: waitinglist) do |form| %>
+  <% if waitinglist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(waitinglist.errors.count, "error") %> prohibited this waitinglist from being saved:</h2>
+
+      <ul>
+        <% waitinglist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :library_id %>
+    <%= form.text_field :library_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

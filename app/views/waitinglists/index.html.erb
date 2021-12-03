@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Waitinglists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Library</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <td><% book = Library.where(id: params[:library_id]).first %>
+  <h2><%= book.book_title %></h2>
+    <% @waitinglists.each do |waitinglist| %>
+      <tr>
+        <td><%= waitinglist.user_id %></td>
+        <td><%= waitinglist.library_id %></td>
+        <td><%= link_to 'Destroy', waitinglist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

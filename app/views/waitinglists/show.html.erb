@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @waitinglist.user_id %>
+</p>
+
+<p>
+  <strong>Library:</strong>
+  <%= @waitinglist.library_id %>
+</p>
+
+<%= link_to 'Edit', edit_waitinglist_path(@waitinglist) %> |
+<%= link_to 'Back', waitinglists_path %>
