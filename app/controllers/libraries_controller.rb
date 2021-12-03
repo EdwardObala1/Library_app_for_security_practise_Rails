@@ -21,9 +21,8 @@ class LibrariesController < ApplicationController
 
   # POST /libraries or /libraries.json
   def create
-    # require 'pry'
-    # binding.pry
-    @library = Library.new(library_params)
+    @library = Library.new(book_title: library_params[:book_title], author: library_params[:author], publish_year: 
+    library_params[:publish_year], user_id: current_user.id)
 
     respond_to do |format|
       if @library.save
@@ -79,6 +78,6 @@ class LibrariesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def library_params
-      params.require(:library).permit(:book_title, :author, :publish_year)
+      params.require(:library).permit(:book_title, :author, :publish_year, :user_id)
     end
 end
