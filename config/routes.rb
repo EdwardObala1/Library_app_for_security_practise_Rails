@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # libraries
   root 'libraries#index'
   get '/Libraries', to: 'libraries#index', as: 'libraries'
-  post '/Libraries/new', to: 'libraries#create', as: 'add_book'
+  post '/Libraries', to: 'libraries#create', as: 'add_book'
   delete '/Libraries/:id', to: 'libraries#destroy', as: 'library_delete'
   get '/Libraries/new', to: 'libraries#new', as: 'new_library'
   patch '/libraries/:id', to: 'libraries#update', as: 'update'
@@ -21,4 +21,7 @@ Rails.application.routes.draw do
   patch '/users/:id', to: 'users#update'
   put '/users/:id', to: 'users#update'
   delete '/users/:id', to: 'users#destroy'
+
+  get '/waitinglist/:id', to: 'waitinglists#index', as: 'waitinglist'
+  post '/waitinglist/:id', to: 'waitinglists#new'
 end

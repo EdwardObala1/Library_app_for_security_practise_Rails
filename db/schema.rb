@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_065316) do
+ActiveRecord::Schema.define(version: 2021_12_03_081515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,5 +35,16 @@ ActiveRecord::Schema.define(version: 2021_12_03_065316) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "waitinglists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "library_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["library_id"], name: "index_waitinglists_on_library_id"
+    t.index ["user_id"], name: "index_waitinglists_on_user_id"
+  end
+
   add_foreign_key "libraries", "users"
+  add_foreign_key "waitinglists", "libraries"
+  add_foreign_key "waitinglists", "users"
 end
