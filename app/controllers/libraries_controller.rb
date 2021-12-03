@@ -21,6 +21,8 @@ class LibrariesController < ApplicationController
 
   # POST /libraries or /libraries.json
   def create
+    # require 'pry'
+    # binding.pry
     @library = Library.new(library_params)
 
     respond_to do |format|
@@ -55,6 +57,19 @@ class LibrariesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # Post borrow_book/1 to borrow or check if you can borrow book
+  def borrow
+    @library = Library.find_by!(id: params[:id]) 
+    respond_to do |format|
+      if @library.user_id == 0
+        format.html { redirect_to borrow_book_url, notice: "You have borrowed the book awaiting approval from Linrarian" }
+      else
+        format.html { redirect_to borrow_book_url, notice: "Book has already been borrowed if you want to be added to the waiting list click on the button below" }
+      end
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -3,5 +3,6 @@ FactoryBot.define do
     book_title {'The Great Gasby'}
     author {'Some guy'}
     publish_year {1910}
+    user
   end
 end
