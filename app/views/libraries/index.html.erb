@@ -22,10 +22,11 @@
         <td><%= library.author %></td>
         <td></td>
         <td><%= library.publish_year %></td>
-        <td><%= link_to 'Show', edit_library_path(library) %></td>
-         
-        <% if current_user %>
-          <% if current_user.admin == true || current_user.librarian == true %>
+
+        <% if user_signed_in? == true %>
+          <td><%= link_to 'Borrow', borrow_book_path(library.id), :params => {user_id: current_user.id}, method: :post %></td>
+
+          <% if current_user.admin == 'true'|| current_user.librarian == 'true' %>
             <td><%= link_to 'Edit', edit_library_path(library) %></td>
             <td><%= link_to 'Destroy', library_delete_path(library), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
@@ -37,9 +38,3 @@
 </table>
 
 <br>
-
-<% if current_user %>
-  <% if current_user.admin == true || current_user.librarian == true %>
-    <%= link_to 'New Book', show_book_path %>
-  <% end %>
-<% end %>

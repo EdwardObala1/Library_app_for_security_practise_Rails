@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @waitinglist.user_id %>
+  <strong>Library:</strong>
+  <%= Library.find_by(id: @waitinglist.library_id).book_title %>
 </p>
 
 <p>
-  <strong>Library:</strong>
-  <%= @waitinglist.library_id %>
+  <strong>User:</strong>
+  <%= User.find_by(id: @waitinglist.user_id).name %>
 </p>
 
 <%= link_to 'Edit', edit_waitinglist_path(@waitinglist) %> |

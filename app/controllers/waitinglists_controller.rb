@@ -3,7 +3,7 @@ class WaitinglistsController < ApplicationController
 
   # GET /waitinglists or /waitinglists.json
   def index
-    @waitinglists = Waitinglist.where(id: params[:id])
+    @waitinglists = Waitinglist.all
   end
 
   # GET /waitinglists/1 or /waitinglists/1.json
