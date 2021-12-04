@@ -46,6 +46,23 @@ RSpec.describe "Libraries", type: :request do
       post waitinglists_path(library.id), :params => { user_id: user.id }
       expect(response.status).to eq(200)
     end
+
+
+    xit 'should search and find user' do
+      post search_path, :params => {library: {search: 'ed'}}
+      expect(response.status).to eq(302)
+    end
+
+    xit 'should search and redirect when search bar is empty' do
+      get libraries_search_path, :params => {library: {search: 'ed'}}
+      expect(response.status).to eq(302)
+    end
+
+    it 'allows the user to borrow a book' do
+      expect {
+        post borrow_book_path(library.id), :params => {user_id: user.id}
+      }.to change(Waitinglist, :count).by(1)
+    end
     
     it 'Librarians and admins can assign books as lent out'
 

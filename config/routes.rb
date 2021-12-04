@@ -28,6 +28,14 @@ Rails.application.routes.draw do
   put '/users/:id', to: 'users#update'
   delete '/users/:id', to: 'users#destroy'
 
-  get '/waitinglist/:id', to: 'waitinglists#index', as: 'waitinglists'
-  post '/waitinglist/:id', to: 'waitinglists#new'
+  
+  post '/waitinglists/:id', to: 'waitinglists#new'
+  delete '/waitinglists/:id', to: 'waitinglists#destroy', as: 'destroy'
+
+  # search fucntionality
+  post '/libraries/search', to: 'libraries#search', as: 'search'
+  get '/libraries/search', to: 'libraries#search', as: 'libraries_search'
+
+  # waitinglist
+  get '/waitinglists', to: 'waitinglists#index', as: "waitinglists"
 end
