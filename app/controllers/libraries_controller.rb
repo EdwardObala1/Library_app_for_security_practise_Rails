@@ -6,7 +6,11 @@ class LibrariesController < ApplicationController
 
   # GET /libraries or /libraries.json
   def index
-    @libraries = Library.all
+    # ransack configuration
+    @q = Library.ransack(params[:q])
+    @libraries = @q.result(distinct: true)
+
+    # @libraries = Library.all
     if user_signed_in?
       @user = User.find_by(id: current_user.id)
     else
@@ -88,7 +92,7 @@ class LibrariesController < ApplicationController
     @library = Library.find_by!(id: params[:id]) 
     Waitinglist.create(user_id: params[:id], library_id: params[:id]).save
     respond_to do |format|
-      format.html { redirect_to waitinglists_url, notice: "You have been added to the waiting lists succsfully for that book." }
+      format.html { redirect_to waitinglists_path, notice: "You have been added to the waiting lists succsfully for that book." }
     end
   end
 
