@@ -1,0 +1,9 @@
+<h3>Search Results:</h3>
+<% @books.each do |book|%>
+<%= link_to book.book_title, show_book_path(book.id) %>
+<% end %>
+<hr>
+
+<% @users.each do |user| %>
+<%= link_to user.name, user_path(user.id) %>
+<% end %>

@@ -28,6 +28,21 @@ class LibrariesController < ApplicationController
   end
 
 
+  def search
+    if library_params[:search].blank?
+      redirect_to root_path and return
+    else
+      @parameter = library_params[:search].downcase
+      # results = Coffeeshop. all.where ("lower (name) LIKE ?" "%#{@parameter}%")
+      # @results = Coffee.joins(:reviews, :coffeeshops) .search (params [:search])
+      @books = Library.where("lower(book_title) LIKE ?", "%#{@parameter}%" )
+      @users = User.all.where("lower(name) LIKE ?", "%#{@parameter}%" )
+      puts 'hiiiii'
+      puts @books
+      redirect_to libraries_search_path
+    end
+  end
+
   # POST /libraries or /libraries.json
   def create
     @library = Library.new(book_title: library_params[:book_title], author: library_params[:author], publish_year: 
@@ -71,12 +86,9 @@ class LibrariesController < ApplicationController
   # Post borrow_book/1 to borrow or check if you can borrow book
   def borrow
     @library = Library.find_by!(id: params[:id]) 
+    Waitinglist.create(user_id: params[:id], library_id: params[:id]).save
     respond_to do |format|
-      if @library.user_id == 0
-        format.html { redirect_to borrow_book_url, notice: "You have borrowed the book awaiting approval from Linrarian" }
-      else
-        format.html { redirect_to borrow_book_url, notice: "Book has already been borrowed if you want to be added to the waiting list click on the button below" }
-      end
+      format.html { redirect_to waitinglists_url, notice: "You have been added to the waiting lists succsfully for that book." }
     end
   end
 
@@ -88,7 +100,7 @@ class LibrariesController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def library_params
-      params.require(:library).permit(:book_title, :author, :publish_year, :user_id)
-    end
+    # def library_params
+    #   params.require(:library).permit(:id, :book_title, :author, :publish_year, :user_id, :search)
+    # end
 end

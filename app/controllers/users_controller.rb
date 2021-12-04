@@ -53,6 +53,11 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    if user_params[:admin] == 1 
+      user_params[:admin] == 'true'
+    elsif user_params[:librarian] == 1
+      user_params[:librarian] == 'true'
+    end
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: "User was successfully updated." }
@@ -81,6 +86,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :access, :role)
+      params.require(:user).permit(:name, :email, :password, :access, :role, :admin, :librarian)
     end
 end
